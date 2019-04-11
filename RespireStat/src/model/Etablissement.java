@@ -4,8 +4,8 @@ public class Etablissement {
 	private String identifiant;
 	private String nom_etablissement;
 	
-	public Etablissement(String i, String n) {
-		this.identifiant = i;
-		this.nom_etablissement = n;
+	public Etablissement(String w_identifiant, String w_nom_etablissement) {
+		this.identifiant = w_identifiant;
+		this.nom_etablissement = w_nom_etablissement;
 	}
 }
