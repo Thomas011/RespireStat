@@ -20,6 +20,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
@@ -38,35 +39,19 @@ public class Viewer extends JFrame{
         viewer.add(panel);
         panel.setPreferredSize(new Dimension(1000,600));
         panel.setBackground(Color.WHITE);
-         
-        String[] entetes = {"Prénom", "Nom", "Couleur favorite", "Homme", "Sport"};
-         
-         Object[][] donnees = {
-             {"Johnathan", "Sykes", Color.red, true, "TENNIS"},
-             {"Nicolas", "Van de Kampf", Color.black, true, "FOOTBALL"},
-             {"Damien", "Cuthbert", Color.cyan, true, "RIEN"},
-             {"Corinne", "Valance", Color.blue, false, "NATATION"},
-             {"Emilie", "Schrödinger", Color.magenta, false, "FOOTBALL"},
-             {"Delphine", "Duke", Color.yellow, false, "TENNIS"},
-             {"Eric", "Trump", Color.pink, true, "FOOTBALL"},
-        };
  
-        JTable tableau = new JTable(donnees, entetes);
-        tableau.setPreferredSize(new Dimension(1000, 600));
-        setColumnWidths(tableau, 7, 1000);
- 
-        panel.add(tableau.getTableHeader(), BorderLayout.NORTH);
+        JTable tableau = new JTable();
+        tableau.setSize(panel.getWidth(), panel.getHeight());
+        
+        panel.setLayout(new BorderLayout());
         panel.add(new JScrollPane(tableau), BorderLayout.CENTER);
+		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
+		r.setHorizontalAlignment(JLabel.CENTER);
+		tableau.setDefaultRenderer(Object.class, r);
+		tableau.setRowHeight(20);
+		
+		tableau.setRowSelectionAllowed(true);
         
         viewer.pack();	
-    }
-    
-    public static void setColumnWidths(JTable table, int column, int width_table) {
-        TableColumnModel columnModel = table.getColumnModel();
-        for (int i = 0; i < column; i++) {
-            if (i < columnModel.getColumnCount()) {
-                columnModel.getColumn(i).setMaxWidth(width_table/column);
-            }
-        }
     }
 }
