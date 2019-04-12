@@ -24,7 +24,5 @@ public class Viewer {
 		viewer.setTitle(w_Title);
 		viewer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		viewer.setLocationRelativeTo(null);
-		
-		
 	}
 }

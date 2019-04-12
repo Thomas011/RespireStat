@@ -1,28 +1,35 @@
 package controller;
 
-import java.awt.List;
-import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.io.FileReader;
 
 import com.opencsv.CSVReader;
 
 public class ConvertCSV {
 
-	public void Run_CSV() {
+	public List<Map<String, String>> Run_CSV(String w_file) {
+		List<Map<String, String>> csv_Result = new ArrayList<Map<String, String>>();
 		try { 
-	        FileReader filereader = new FileReader("./src/ecoles-creches-idf.csv"); 
-	        CSVReader csvReader = new CSVReader(filereader); 
-	        String[] nextRecord; 
-	        while ((nextRecord = csvReader.readNext()) != null) { 
-	            for (String cell : nextRecord) { 
-	                System.out.print(cell + "\t"); 
-	            } 
-	            System.out.println(); 
-	        } 
+			CSVReader csvReader = new CSVReader(new FileReader(w_file));
+			String[] index = csvReader.readNext(); // Index is first row in CSV File
+			String[] row = csvReader.readNext();
+			while(row != null) {
+				Map<String, String> temp = new HashMap<String, String>();
+				for(int i = 0; i < row.length; i++) {
+					temp.put(index[i].toString(), row[i].toString());
+				}
+				csv_Result.add(temp);
+				row = csvReader.readNext(); // Increment row in CSV File
+			}
+            csvReader.close();
 	    } 
 	    catch (Exception e) { 
 	        e.printStackTrace(); 
-	    } 
+	    }
+		
+		return csv_Result;
 	}
 }
