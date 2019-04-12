@@ -8,10 +8,12 @@ import java.io.FileReader;
 
 import com.opencsv.CSVReader;
 
+import model.Etablissement;
+
 public class ConvertCSV {
 
-	public List<Map<String, String>> Run_CSV(String w_file) {
-		List<Map<String, String>> csv_Result = new ArrayList<Map<String, String>>();
+	public List<Etablissement> Run_CSV(String w_file) {
+		List<Etablissement> eta_Collections = new ArrayList<Etablissement>();
 		try { 
 			CSVReader csvReader = new CSVReader(new FileReader(w_file));
 			String[] index = csvReader.readNext(); // Index is first row in CSV File
@@ -21,7 +23,7 @@ public class ConvertCSV {
 				for(int i = 0; i < row.length; i++) {
 					temp.put(index[i].toString(), row[i].toString());
 				}
-				csv_Result.add(temp);
+				eta_Collections.add(new Etablissement(temp));
 				row = csvReader.readNext(); // Increment row in CSV File
 			}
             csvReader.close();
@@ -30,6 +32,6 @@ public class ConvertCSV {
 	        e.printStackTrace(); 
 	    }
 		
-		return csv_Result;
+		return eta_Collections;
 	}
 }
