@@ -9,6 +9,9 @@ import java.io.FileReader;
 import com.opencsv.CSVReader;
 
 import model.Etablissement;
+import model.CoordGPS;
+import model.Lieu;
+import model.Pollution;
 
 public class ConvertCSV {
 

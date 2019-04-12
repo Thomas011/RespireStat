@@ -11,6 +11,7 @@ public class Main {
 	public static void main(String[] args) {
 		ConvertCSV build = new ConvertCSV();
 		List<Etablissement> Collections = build.Run_CSV("./src/ecoles-creches-idf.csv");
-		//Viewer viewer = new Viewer("RespireStat");
+		//for(Etablissement data : Collections) { }
+		Viewer viewer = new Viewer("RespireStat");
 	}
 }
