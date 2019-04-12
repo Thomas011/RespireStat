@@ -11,6 +11,6 @@ public class Main {
 	public static void main(String[] args) {
 		ConvertCSV build = new ConvertCSV();
 		List<Map<String, String>> result = build.Run_CSV("./src/ecoles-creches-idf.csv");
-		System.out.println(result);
+		Viewer viewer = new Viewer("RespireStat");
 	}
 }
