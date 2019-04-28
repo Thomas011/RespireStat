@@ -9,9 +9,11 @@ import java.util.Arrays;
 
 public class Main {
 	public static void main(String[] args) {
+		//Viewer viewer = new Viewer("RespireStat");
 		ConvertCSV build = new ConvertCSV();
 		List<Etablissement> Collections = build.Run_CSV("./src/ecoles-creches-idf.csv");
-		//for(Etablissement data : Collections) { }
-		Viewer viewer = new Viewer("RespireStat");
+		
+		Stat_Etablissements test = new Stat_Etablissements(Collections);
+		List<Etablissement> FO1 = test.Get_FO1();
 	}
 }

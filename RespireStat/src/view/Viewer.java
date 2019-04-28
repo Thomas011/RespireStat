@@ -23,35 +23,32 @@ public class Viewer extends JFrame{
         
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
         tabbedPane.setPreferredSize(new Dimension(viewer.getWidth(), viewer.getHeight()));
-        tabbedPane.addTab("F01", makePanel("This is tab 1"));
-        tabbedPane.addTab("F02", makePanel("This is tab 2"));
-        tabbedPane.addTab("F03", makePanel("This is tab 3"));
-        tabbedPane.addTab("F04", makePanel("This is tab 4"));
-        viewer.getContentPane().add(tabbedPane);
         
         Object[][] data = {
-            {"Johnathan", "Sykes", Color.red, true, "TENNIS"},
-            {"Nicolas", "Van de Kampf", Color.black, true, "FOOTBALL"},
-            {"Damien", "Cuthbert", Color.cyan, true, "NOTHING"},
-            {"Corinne", "Valance", Color.blue, false, "SWIMMING"},
-            {"Emilie", "Schrödinger", Color.magenta, false, "FOOTBALL"},
-            {"Delphine", "Duke", Color.yellow, false, "TENNIS"},
-            {"Eric", "Trump", Color.pink, true, "FOOTBALL"},
+            {"Johnathan", "Sykes", "TENNIS"},
+            {"Nicolas", "Van de Kampf", "FOOTBALL"},
+            {"Damien", "Cuthbert", "NOTHING"},
+            {"Corinne", "Valance", "SWIMMING"},
+            {"Emilie", "Schrödinger", "FOOTBALL"},
+            {"Delphine", "Duke", "TENNIS"},
+            {"Eric", "Trump", "FOOTBALL"},
         };
 
-        String[] headers = {"First name", "Name", "Favourite color", "Gender", "Sport"};
+        String[] header = {"N02", "PM10", "PM25"};
         
-        JTable table = new JTable(data, headers);
-        tabbedPane.add(table.getTableHeader(), BorderLayout.NORTH);
-        tabbedPane.add(table, BorderLayout.CENTER);
+        tabbedPane.addTab("F01", Create_Tab_Table(data, header));
         
+        viewer.getContentPane().add(tabbedPane);
         viewer.pack();	
     }
     
-    private static JPanel makePanel(String text) {
-        JPanel p = new JPanel();
-        p.add(new Label(text));
-        p.setLayout(new GridLayout(1, 1));
-        return p;
+    private static JPanel Create_Tab_Table(Object[][] data, String[] header) {
+        JPanel Panel = new JPanel();
+        JTable Table = new JTable(data, header);
+        Panel.add(Table);
+        Panel.setLayout(new BorderLayout());
+        Panel.add(Table, BorderLayout.CENTER);
+        Panel.add(Table.getTableHeader(), BorderLayout.NORTH);
+        return Panel;
     }
 }

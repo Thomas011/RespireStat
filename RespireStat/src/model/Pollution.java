@@ -3,13 +3,12 @@ package model;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Pollution extends Etablissement {
+public class Pollution {
 	Map<Integer, Double> NO2 = new HashMap<Integer, Double>();
 	Map<Integer, Double> PM10 = new HashMap<Integer, Double>();
 	Map<Integer, Double> PM25 = new HashMap<Integer, Double>();
 	
 	public Pollution(Map<String, String> data_etablissement) {
-		super(data_etablissement);
 		for(Map.Entry<String, String> data : data_etablissement.entrySet()) {
 			String key = data.getKey();
 			String value = data.getValue();
