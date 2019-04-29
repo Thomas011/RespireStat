@@ -1,18 +1,24 @@
 package view;
 
+import model.Etablissement;
+import controller.Stat_Etablissements;
+
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.Label;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 public class Viewer extends JFrame{
-    public Viewer (String w_Title) {
+    public Viewer (String w_Title, List<Etablissement> w_Collections) {
         JFrame viewer = new JFrame();
         viewer.setVisible(true);
         viewer.setSize(1000, 600);
@@ -24,22 +30,20 @@ public class Viewer extends JFrame{
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
         tabbedPane.setPreferredSize(new Dimension(viewer.getWidth(), viewer.getHeight()));
         
-        Object[][] data = {
-            {"Johnathan", "Sykes", "TENNIS"},
-            {"Nicolas", "Van de Kampf", "FOOTBALL"},
-            {"Damien", "Cuthbert", "NOTHING"},
-            {"Corinne", "Valance", "SWIMMING"},
-            {"Emilie", "Schrödinger", "FOOTBALL"},
-            {"Delphine", "Duke", "TENNIS"},
-            {"Eric", "Trump", "FOOTBALL"},
-        };
-
-        String[] header = {"N02", "PM10", "PM25"};
+        Stat_Etablissements Stat = new Stat_Etablissements(w_Collections);
         
-        tabbedPane.addTab("F01", Create_Tab_Table(data, header));
+        String[][] F01_Data = Stat.Get_FO1_Data();
+        String[] F01_Header = Stat.Get_FO1_Header();
+        
+        tabbedPane.addTab("F01", Create_Tab_Table(F01_Data, F01_Header));
+        
+        //String[][] F02_Data = Stat.Get_FO2_Data();
+        //String[] F02_Header = Stat.Get_FO2_Header();
+        
+        //tabbedPane.addTab("F01", Create_Tab_Table(F02_Data, F02_Header));
         
         viewer.getContentPane().add(tabbedPane);
-        viewer.pack();	
+        viewer.pack();
     }
     
     private static JPanel Create_Tab_Table(Object[][] data, String[] header) {
