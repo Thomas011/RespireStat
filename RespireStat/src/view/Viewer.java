@@ -57,14 +57,15 @@ public class Viewer extends JFrame{
         JTable Table = new JTable(data, header);
         Table.setPreferredScrollableViewportSize(new Dimension(450,63));
         Table.setFillsViewportHeight(true);
-        JScrollPane js = new JScrollPane(Table);
-        js.setVisible(true);
-        Panel.add(js);
         
         Panel.add(Table);
         Panel.setLayout(new BorderLayout());
         Panel.add(Table, BorderLayout.CENTER);
         Panel.add(Table.getTableHeader(), BorderLayout.NORTH);
+        
+        JScrollPane pane = new JScrollPane(Table);
+        Panel.add(pane, BorderLayout.CENTER);
+        
         return Panel;
     }
 }

@@ -98,7 +98,7 @@ public class Stat_Etablissements {
 			}
 		}
 		
-		String[][] Data = new String[NO2.size() + PM10.size() + PM25.size()][3];
+		String[][] Data = new String[NO2.size() + PM10.size()][3];
 		int index = 0;
 		for(Map.Entry<String, Double> data : NO2.entrySet()) {
         	Data[index][0] = data.getKey();
@@ -137,6 +137,7 @@ public class Stat_Etablissements {
 		for(Etablissement data : this.Collections) {
 			if(!NO2.containsKey(data.Get_Departement())) {
 				NO2.put(data.Get_Departement(), data.Get_NO2().get(2017));
+				System.out.println(data.Get_Name());
 	        }
 			else {
 				NO2.put(data.Get_Departement(), NO2.get(data.Get_Departement()) + data.Get_NO2().get(2017) / Collections.size());
@@ -157,7 +158,7 @@ public class Stat_Etablissements {
 			}
 		}
 		
-		String[][] Data = new String[NO2.size() + PM10.size() + PM25.size()][3];
+		String[][] Data = new String[NO2.size() + PM10.size()][3];
 		int index = 0;
 		for(Map.Entry<String, Double> data : NO2.entrySet()) {
         	Data[index][0] = data.getKey();
