@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,8 +70,7 @@ public class Stat_Etablissements {
 		return temp;
 	}
 	
-	public List<Map<String, Double>> Get_FO2_Data() {
-		List<Map<String, Double>> List = new ArrayList<Map<String, Double>>();
+	public String[][] Get_FO2_Data() {
 		Map<String, Double> NO2 = new HashMap<String, Double>();
 		Map<String, Double> PM10 = new HashMap<String, Double>();
 		Map<String, Double> PM25 = new HashMap<String, Double>();
@@ -98,15 +98,38 @@ public class Stat_Etablissements {
 			}
 		}
 		
-		List.add(NO2);
-		List.add(PM10);
-		List.add(PM25);
-		
-		return List;
+		String[][] Data = new String[NO2.size() + PM10.size() + PM25.size()][3];
+		int index = 0;
+		for(Map.Entry<String, Double> data : NO2.entrySet()) {
+        	Data[index][0] = data.getKey();
+        	index++;
+        	Data[index][0] = data.getValue().toString();
+        	index++;
+		}
+		index = 0;
+		for(Map.Entry<String, Double> data : PM10.entrySet()) {
+			Data[index][1] = data.getKey();
+        	index++;
+        	Data[index][1] = data.getValue().toString();
+        	index++;
+		}
+		index = 0;
+		for(Map.Entry<String, Double> data : PM25.entrySet()) {
+			Data[index][2] = data.getKey();
+        	index++;
+        	Data[index][2] = data.getValue().toString();
+        	index++;
+		}
+
+		return Data;
 	}
 	
-	public List<Map<String, Double>> Get_FO3() {
-		List<Map<String, Double>> List = new ArrayList<Map<String, Double>>();
+	public String[] Get_FO3_Header() {
+		String[] temp = new String[]{"NO2", "PM10", "PM25"};
+		return temp;
+	}
+	
+	public String[][] Get_FO3_Data() {
 		Map<String, Double> NO2 = new HashMap<String, Double>();
 		Map<String, Double> PM10 = new HashMap<String, Double>();
 		Map<String, Double> PM25 = new HashMap<String, Double>();
@@ -134,11 +157,30 @@ public class Stat_Etablissements {
 			}
 		}
 		
-		List.add(NO2);
-		List.add(PM10);
-		List.add(PM25);
-		
-		return List;
+		String[][] Data = new String[NO2.size() + PM10.size() + PM25.size()][3];
+		int index = 0;
+		for(Map.Entry<String, Double> data : NO2.entrySet()) {
+        	Data[index][0] = data.getKey();
+        	index++;
+        	Data[index][0] = data.getValue().toString();
+        	index++;
+		}
+		index = 0;
+		for(Map.Entry<String, Double> data : PM10.entrySet()) {
+			Data[index][1] = data.getKey();
+        	index++;
+        	Data[index][1] = data.getValue().toString();
+        	index++;
+		}
+		index = 0;
+		for(Map.Entry<String, Double> data : PM25.entrySet()) {
+			Data[index][2] = data.getKey();
+        	index++;
+        	Data[index][2] = data.getValue().toString();
+        	index++;
+		}
+
+		return Data;
 	}
 	
 	public List<Map<String, Double>> Get_FO4() {
