@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -33,30 +34,25 @@ public class Viewer extends JFrame{
         
         Stat_Etablissements Stat = new Stat_Etablissements(w_Collections);
         
-        String[][] F01_Data = Stat.Get_FO1_Data();
-        String[] F01_Header = Stat.Get_FO1_Header();
+        String[] Header = new String[]{"NO2", "PM10", "PM25"};
         
-        tabbedPane.addTab("F01", Create_Tab_Table(F01_Data, F01_Header));
-
-        String[][] F02_Data = Stat.Get_FO2_Data();
-        String[] F02_Header = Stat.Get_FO2_Header();
-        
-        tabbedPane.addTab("F02", Create_Tab_Table(F02_Data, F02_Header));
-        
-        String[][] F03_Data = Stat.Get_FO3_Data();
-        String[] F03_Header = Stat.Get_FO3_Header();
-        
-        tabbedPane.addTab("F03", Create_Tab_Table(F03_Data, F03_Header));
+        tabbedPane.addTab("F01", Create_Tab_Table(Header, Stat.Get_FO1_Data(), 50));
+        tabbedPane.addTab("F02", Create_Tab_Table(Header, Stat.Get_FO2_Data(), 40));
+        tabbedPane.addTab("F03", Create_Tab_Table(Header, Stat.Get_FO3_Data(), 40));
+        tabbedPane.addTab("F04", Create_Tab_Table(Header, Stat.Get_FO4_Data(), 40));
         
         viewer.getContentPane().add(tabbedPane);
         viewer.pack();
     }
     
-    private static JPanel Create_Tab_Table(Object[][] data, String[] header) {
+    private static JPanel Create_Tab_Table(String[] header, String[][] data, int Row_Height) {
         JPanel Panel = new JPanel();
-        JTable Table = new JTable(data, header);
+        DefaultTableModel Model = new DefaultTableModel(data, header);
+        JTable Table = new JTable(Model);
+        
         Table.setPreferredScrollableViewportSize(new Dimension(450,63));
         Table.setFillsViewportHeight(true);
+        Table.setRowHeight(Row_Height);
         
         Panel.add(Table);
         Panel.setLayout(new BorderLayout());
